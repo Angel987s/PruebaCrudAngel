@@ -4,6 +4,8 @@
  */
 package com.mycompany.curdjava;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author MINEDUCYT
@@ -15,6 +17,7 @@ public class FrmInicio extends javax.swing.JFrame {
      */
     public FrmInicio() {
         initComponents();
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     /**
@@ -34,7 +37,7 @@ public class FrmInicio extends javax.swing.JFrame {
 
         jMenu1.setText("jMenu1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Crud");
 
         jMenu2.setText("Empleados");
 
@@ -49,6 +52,16 @@ public class FrmInicio extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Salir");
+        jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu3MouseClicked(evt);
+            }
+        });
+        jMenu3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu3ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
@@ -72,6 +85,16 @@ public class FrmInicio extends javax.swing.JFrame {
         FrmEmpleadoVer frmProductosLec = new FrmEmpleadoVer();
         frmProductosLec.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu3ActionPerformed
+
+    private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        System.exit(0);
+    }//GEN-LAST:event_jMenu3MouseClicked
 
     /**
      * @param args the command line arguments

@@ -32,12 +32,16 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Salir"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jMenu3MouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenu3ActionPerformed"/>
+          </Events>
         </Menu>
       </SubComponents>
     </Menu>
   </NonVisualComponents>
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="title" type="java.lang.String" value="Crud"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar1"/>
