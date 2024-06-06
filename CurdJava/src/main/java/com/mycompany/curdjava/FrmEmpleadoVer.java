@@ -86,13 +86,13 @@ public class FrmEmpleadoVer extends javax.swing.JFrame {
 
         tableEmpleados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID Empleado", "Nombre", "Apellido", "Cargo", "Salario", "Departamento"
             }
         ));
         tableEmpleados.addMouseListener(new java.awt.event.MouseAdapter() {
