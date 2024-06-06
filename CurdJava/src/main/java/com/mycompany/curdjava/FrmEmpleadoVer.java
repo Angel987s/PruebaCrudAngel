@@ -35,8 +35,6 @@ public class FrmEmpleadoVer extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tableEmpleados = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         textNombre = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
@@ -44,21 +42,10 @@ public class FrmEmpleadoVer extends javax.swing.JFrame {
         btnEditar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         BtnCancelar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableEmpleados = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        tableEmpleados.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(tableEmpleados);
 
         jLabel1.setText("Nombre :");
 
@@ -97,30 +84,51 @@ public class FrmEmpleadoVer extends javax.swing.JFrame {
             }
         });
 
+        tableEmpleados.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tableEmpleados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableEmpleadosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tableEmpleados);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnEditar)
-                        .addGap(146, 146, 146)
-                        .addComponent(btnEliminar)
-                        .addGap(148, 148, 148)
-                        .addComponent(BtnCancelar))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(textNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(82, 82, 82)
-                            .addComponent(btnBuscar)
-                            .addGap(18, 18, 18)
-                            .addComponent(btnCrear))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(44, Short.MAX_VALUE))
+                        .addGap(38, 38, 38)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(textNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(82, 82, 82)
+                                .addComponent(btnBuscar)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnCrear))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnEditar)
+                                .addGap(111, 111, 111)
+                                .addComponent(btnEliminar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(BtnCancelar))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,35 +139,53 @@ public class FrmEmpleadoVer extends javax.swing.JFrame {
                     .addComponent(textNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscar)
                     .addComponent(btnCrear))
-                .addGap(54, 54, 54)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEditar)
                     .addComponent(btnEliminar)
+                    .addComponent(btnEditar)
                     .addComponent(BtnCancelar))
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addGap(44, 44, 44))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+      private Empleado obtenerDatos() {
+        Empleado empleado = new Empleado();
+        int row = tableEmpleados.getSelectedRow();
+        empleado.setEmpleadoId((int) tableEmpleados.getValueAt(row, 0));
+        empleado.setNombre(tableEmpleados.getValueAt(row, 1).toString());
+        empleado.setApellido(tableEmpleados.getValueAt(row, 2).toString());
+        empleado.setCargo(tableEmpleados.getValueAt(row, 3).toString());
+        empleado.setSalario((double) tableEmpleados.getValueAt(row, 4));
+        empleado.setDepartamentoId((int) tableEmpleados.getValueAt(row, 5));
+        
+        Departamento departamento = new Departamento();
+        departamento.setNombre(tableEmpleados.getValueAt(row, 6).toString());
+        departamento.setDepartamentoId((int)tableEmpleados.getValueAt(row, 5));
+        empleado.setDepartamento(departamento);
+        return empleado;
+    }
+      
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
         Empleado empleado = new Empleado();
         empleado.setNombre(textNombre.getText());
         ArrayList<Empleado> empleados = EmpleadoDAL.buscar(empleado);
-        String[] columnas = {"ID PRoducto", "Nombre", "Descripcion", "Precio","CategoriaID", "Categoria"};
-        Object[][] datos = new Object[empleados.size()][6];
+        String[] columnas = {"ID Producto", "Nombre", "Apellido", "Cargo", "Salario","DepartamentoID", "Departamento"};
+        Object[][] datos = new Object[empleados.size()][7];
         for (int i = 0; i < empleados.size(); i++) {
             Empleado item = empleados.get(i);
             datos[i][0] = item.getEmpleadoId();
             datos[i][1] = item.getNombre();
             datos[i][2] = item.getApellido();
-            datos[i][2] = item.getCargo();
-            datos[i][3] = item.getSalario();
-            datos[i][4] = item.getDepartamentoId();
-             datos[i][5] = item.getDepartamento().getNombre();
+            datos[i][3] = item.getCargo();
+            datos[i][4] = item.getSalario();
+            datos[i][5] = item.getDepartamentoId();
+             datos[i][6] = item.getDepartamento().getNombre();
         }
         DefaultTableModel modelTable = new DefaultTableModel(datos, columnas);
         tableEmpleados.setModel(modelTable);
@@ -171,11 +197,11 @@ public class FrmEmpleadoVer extends javax.swing.JFrame {
         if (row != -1) {
             opcionCRUD = OpcionesCRUD.MODIFICAR;
             FrmEmpleadoCrear frmEmpleadoCrear = new FrmEmpleadoCrear(opcionCRUD, obtenerDatos());
-            frmEmpleadoCrear.setTitle("Modificar producto");
+            frmEmpleadoCrear.setTitle("Modificar Empleado");
             frmEmpleadoCrear.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this,
-                    "Seleccionar una fila", "Empleado",
+                    "Seleccionar una fila", "Empleados",
                     JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnEditarActionPerformed
@@ -207,6 +233,10 @@ public class FrmEmpleadoVer extends javax.swing.JFrame {
                     JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void tableEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableEmpleadosMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tableEmpleadosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -244,22 +274,7 @@ public class FrmEmpleadoVer extends javax.swing.JFrame {
     }
     
     
-    private Empleado obtenerDatos() {
-        Empleado empleado = new Empleado();
-        int row = tableEmpleados.getSelectedRow();
-        empleado.setEmpleadoId((int) tableEmpleados.getValueAt(row, 0));
-        empleado.setNombre(tableEmpleados.getValueAt(row, 1).toString());
-        empleado.setApellido(tableEmpleados.getValueAt(row, 2).toString());
-        empleado.setCargo(tableEmpleados.getValueAt(row, 3).toString());
-        empleado.setSalario((double) tableEmpleados.getValueAt(row, 4));
-        empleado.setDepartamentoId((int) tableEmpleados.getValueAt(row, 5));
-        
-        Departamento departamento= new Departamento();
-        departamento.setNombre(tableEmpleados.getValueAt(row, 6).toString());
-        departamento.setDepartamentoId((int)tableEmpleados.getValueAt(row, 5));
-        empleado.setDepartamento(departamento);
-        return empleado;
-    }
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnCancelar;

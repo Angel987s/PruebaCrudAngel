@@ -46,7 +46,7 @@ public class FrmEmpleadoCrear extends javax.swing.JFrame {
         }
     }
     
-    private Empleado ObtenerDatos() {
+    private Empleado obtenerDatos() {
         Empleado producto = new Empleado();
         producto.setNombre(txtNombre.getText());
         producto.setApellido(txtApellido.getText());
@@ -70,7 +70,7 @@ public class FrmEmpleadoCrear extends javax.swing.JFrame {
     
     private void crearReg() {
         try {
-            Empleado empleado = ObtenerDatos();
+            Empleado empleado = obtenerDatos();
             int result = EmpleadoDAL.crear(empleado);
             if (result > 0) {
                 JOptionPane.showMessageDialog(this,
@@ -91,7 +91,7 @@ public class FrmEmpleadoCrear extends javax.swing.JFrame {
     
     private void modificarReg() {
         try {
-            Empleado empleado = ObtenerDatos();
+            Empleado empleado = obtenerDatos();
             int result = EmpleadoDAL.modificar(empleado);
             if (result > 0) {
                 JOptionPane.showMessageDialog(this,
@@ -111,7 +111,7 @@ public class FrmEmpleadoCrear extends javax.swing.JFrame {
     }
      private void eliminarReg() {
         try {
-            Empleado empleado = ObtenerDatos();
+            Empleado empleado = obtenerDatos();
             int result = EmpleadoDAL.eliminar(empleado);
             if (result > 0) {
                 JOptionPane.showMessageDialog(this,

@@ -20,7 +20,7 @@ public class EmpleadoDAL {
     public static int crear(Empleado empleado) {
         try (Connection conn = ComunDB.obtenerConexion()) {
 
-            String sql = "INSERT INTO Empleados (Nombre, Apellido, Cargo, Precio, DepartamentoID) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO Empleados (Nombre, Apellido, Cargo, Salario, DepartamentoID) VALUES (?, ?, ?, ?, ?)";
             try (PreparedStatement statement = conn.prepareStatement(sql)) {
                 statement.setString(1, empleado.getNombre());
                 statement.setString(2, empleado.getApellido());

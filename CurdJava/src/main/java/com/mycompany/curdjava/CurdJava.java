@@ -11,6 +11,7 @@ package com.mycompany.curdjava;
 public class CurdJava {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        FrmInicio frmInicio= new FrmInicio();
+       frmInicio.setVisible(true);
     }
 }
