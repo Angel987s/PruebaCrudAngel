@@ -13,8 +13,8 @@ import java.sql.SQLException;
  */
 public class ComunDB {
      static String connectionUrl = "jdbc:sqlserver://COMPU:1433;"
-            + "databaseName=Practica20240604DB;"
-            + "user=java0605;"
+            + "databaseName=CrudAngel;"
+            + "user=CrudAngel;"
             + "password=12345;"
             + "loginTimeout=30;encrypt=false;trustServerCertificate=false";
      public static Connection obtenerConexion() throws SQLException {
