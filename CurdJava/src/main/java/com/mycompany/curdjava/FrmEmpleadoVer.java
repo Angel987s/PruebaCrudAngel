@@ -257,7 +257,7 @@ public class FrmEmpleadoVer extends javax.swing.JFrame {
         Departamento departamento= new Departamento();
         departamento.setNombre(tableEmpleados.getValueAt(row, 6).toString());
         departamento.setDepartamentoId((int)tableEmpleados.getValueAt(row, 5));
-        departamento.setDepartamento(departamento);
+        empleado.setDepartamento(departamento);
         return empleado;
     }
 
