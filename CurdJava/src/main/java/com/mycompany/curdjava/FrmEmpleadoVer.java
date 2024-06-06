@@ -41,6 +41,9 @@ public class FrmEmpleadoVer extends javax.swing.JFrame {
         textNombre = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         btnCrear = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        BtnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,6 +70,32 @@ public class FrmEmpleadoVer extends javax.swing.JFrame {
         });
 
         btnCrear.setText("Crear");
+        btnCrear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearActionPerformed(evt);
+            }
+        });
+
+        btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
+
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+
+        BtnCancelar.setText("Cancelar");
+        BtnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -74,16 +103,23 @@ public class FrmEmpleadoVer extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(textNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(82, 82, 82)
-                        .addComponent(btnBuscar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnCrear))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnEditar)
+                        .addGap(146, 146, 146)
+                        .addComponent(btnEliminar)
+                        .addGap(148, 148, 148)
+                        .addComponent(BtnCancelar))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(textNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(82, 82, 82)
+                            .addComponent(btnBuscar)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnCrear))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(44, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -97,7 +133,12 @@ public class FrmEmpleadoVer extends javax.swing.JFrame {
                     .addComponent(btnCrear))
                 .addGap(54, 54, 54)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(140, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnEditar)
+                    .addComponent(btnEliminar)
+                    .addComponent(BtnCancelar))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
 
         pack();
@@ -123,6 +164,49 @@ public class FrmEmpleadoVer extends javax.swing.JFrame {
         DefaultTableModel modelTable = new DefaultTableModel(datos, columnas);
         tableEmpleados.setModel(modelTable);
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        // TODO add your handling code here:
+         int row = tableEmpleados.getSelectedRow();
+        if (row != -1) {
+            opcionCRUD = OpcionesCRUD.MODIFICAR;
+            FrmEmpleadoCrear frmEmpleadoCrear = new FrmEmpleadoCrear(opcionCRUD, obtenerDatos());
+            frmEmpleadoCrear.setTitle("Modificar producto");
+            frmEmpleadoCrear.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this,
+                    "Seleccionar una fila", "Empleado",
+                    JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_BtnCancelarActionPerformed
+
+    private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
+        // TODO add your handling code here:
+        opcionCRUD = OpcionesCRUD.CREAR;
+        FrmEmpleadoCrear frmProductosEsc = new FrmEmpleadoCrear(opcionCRUD, new Empleado());
+        frmProductosEsc.setTitle("Crear producto");
+        frmProductosEsc.setVisible(true);
+    }//GEN-LAST:event_btnCrearActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        int row = tableEmpleados.getSelectedRow();
+        if (row != -1) {
+            opcionCRUD = OpcionesCRUD.ELIMINAR;
+            FrmEmpleadoCrear frmProductosEsc = new FrmEmpleadoCrear(opcionCRUD, obtenerDatos());
+            frmProductosEsc.setTitle("Eliminar producto");
+            frmProductosEsc.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this,
+                    "Seleccionar una fila", "Producto",
+                    JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -158,10 +242,31 @@ public class FrmEmpleadoVer extends javax.swing.JFrame {
             }
         });
     }
+    
+    
+    private Empleado obtenerDatos() {
+        Empleado empleado = new Empleado();
+        int row = tableEmpleados.getSelectedRow();
+        empleado.setEmpleadoId((int) tableEmpleados.getValueAt(row, 0));
+        empleado.setNombre(tableEmpleados.getValueAt(row, 1).toString());
+        empleado.setApellido(tableEmpleados.getValueAt(row, 2).toString());
+        empleado.setCargo(tableEmpleados.getValueAt(row, 3).toString());
+        empleado.setSalario((double) tableEmpleados.getValueAt(row, 4));
+        empleado.setDepartamentoId((int) tableEmpleados.getValueAt(row, 5));
+        
+        Departamento departamento= new Departamento();
+        departamento.setNombre(tableEmpleados.getValueAt(row, 6).toString());
+        departamento.setDepartamentoId((int)tableEmpleados.getValueAt(row, 5));
+        departamento.setDepartamento(departamento);
+        return empleado;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnCancelar;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnCrear;
+    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tableEmpleados;
