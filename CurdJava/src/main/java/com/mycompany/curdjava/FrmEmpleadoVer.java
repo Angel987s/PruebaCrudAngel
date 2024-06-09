@@ -45,7 +45,7 @@ public class FrmEmpleadoVer extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tableEmpleados = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Empleados");
 
         jLabel1.setText("Nombre :");

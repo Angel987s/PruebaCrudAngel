@@ -16,7 +16,7 @@ import static utilerias.OpcionesCRUD.MODIFICAR;
  *
  * @author MINEDUCYT
  */
-public class FrmCategoria extends javax.swing.JFrame {
+public class FrmDepartamentoCrear extends javax.swing.JFrame {
 
      private OpcionesCRUD opcionCRUD;
       private Departamento departamentodActual = new Departamento();
@@ -24,7 +24,7 @@ public class FrmCategoria extends javax.swing.JFrame {
     /**
      * Creates new form FrmCategoria
      */
-    public FrmCategoria(OpcionesCRUD opcion, Departamento departamento) {
+    public FrmDepartamentoCrear(OpcionesCRUD opcion, Departamento departamento) {
         
         this.opcionCRUD = opcion;
         
@@ -54,7 +54,7 @@ public class FrmCategoria extends javax.swing.JFrame {
         btnGuardar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Nombre : ");
 
@@ -154,14 +154,16 @@ public class FrmCategoria extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmCategoria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmDepartamentoCrear.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmCategoria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmDepartamentoCrear.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmCategoria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmDepartamentoCrear.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmCategoria.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmDepartamentoCrear.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+
         //</editor-fold>
 
         /* Create and display the form */

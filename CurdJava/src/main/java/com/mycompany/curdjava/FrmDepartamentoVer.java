@@ -17,13 +17,13 @@ import utilerias.OpcionesCRUD;
  *
  * @author MINEDUCYT
  */
-public class FrmCategoriaVer extends javax.swing.JFrame {
+public class FrmDepartamentoVer extends javax.swing.JFrame {
 
     private OpcionesCRUD opcionCRUD;
     /**
      * Creates new form FrmCategoriaVer
      */
-    public FrmCategoriaVer() {
+    public FrmDepartamentoVer() {
         initComponents();
     }
 
@@ -46,7 +46,8 @@ public class FrmCategoriaVer extends javax.swing.JFrame {
         btnEliminar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Departamentos");
 
         tableDepartamento.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -106,26 +107,23 @@ public class FrmCategoriaVer extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
                         .addComponent(btnEditar)
-                        .addGap(41, 41, 41)
+                        .addGap(109, 109, 109)
                         .addComponent(btnEliminar)
-                        .addGap(57, 57, 57)
-                        .addComponent(btnCancelar)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnBuscar)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnCrear)))
-                        .addGap(19, 19, 19))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCancelar))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnBuscar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCrear)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE))
+                .addGap(19, 19, 19))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,7 +168,7 @@ public class FrmCategoriaVer extends javax.swing.JFrame {
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
         // TODO add your handling code here:
         opcionCRUD = OpcionesCRUD.CREAR;
-        FrmCategoria frmProductosEsc = new FrmCategoria(opcionCRUD, new Departamento());
+        FrmDepartamentoCrear frmProductosEsc = new FrmDepartamentoCrear(opcionCRUD, new Departamento());
         frmProductosEsc.setTitle("Crear producto");
         frmProductosEsc.setVisible(true);
     }//GEN-LAST:event_btnCrearActionPerformed
@@ -180,7 +178,7 @@ public class FrmCategoriaVer extends javax.swing.JFrame {
         int row = tableDepartamento.getSelectedRow();
         if (row != -1) {
             opcionCRUD = OpcionesCRUD.MODIFICAR;
-            FrmCategoria frmCategoria = new FrmCategoria(opcionCRUD, obtenerDatos());
+            FrmDepartamentoCrear frmCategoria = new FrmDepartamentoCrear(opcionCRUD, obtenerDatos());
             frmCategoria.setTitle("Modificar Empleado");
             frmCategoria.setVisible(true);
         } else {
@@ -195,7 +193,7 @@ public class FrmCategoriaVer extends javax.swing.JFrame {
         int row = tableDepartamento.getSelectedRow();
         if (row != -1) {
             opcionCRUD = OpcionesCRUD.ELIMINAR;
-            FrmCategoria frmCategoria = new FrmCategoria(opcionCRUD, obtenerDatos());
+            FrmDepartamentoCrear frmCategoria = new FrmDepartamentoCrear(opcionCRUD, obtenerDatos());
             frmCategoria.setTitle("Eliminar producto");
             frmCategoria.setVisible(true);
         } else {
@@ -236,20 +234,21 @@ public class FrmCategoriaVer extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmCategoriaVer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmDepartamentoVer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmCategoriaVer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmDepartamentoVer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmCategoriaVer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmDepartamentoVer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmCategoriaVer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FrmDepartamentoVer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrmCategoriaVer().setVisible(true);
+                new FrmDepartamentoVer().setVisible(true);
             }
         });
     }
