@@ -46,6 +46,7 @@ public class FrmEmpleadoVer extends javax.swing.JFrame {
         tableEmpleados = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Empleados");
 
         jLabel1.setText("Nombre :");
 

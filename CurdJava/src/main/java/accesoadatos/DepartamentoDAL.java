@@ -58,10 +58,11 @@ public class DepartamentoDAL {
     public static int modificar(Departamento departamento) {
         try (Connection conn = ComunDB.obtenerConexion()) {
 
-            String sql = "UPDATE Departamentos SET Nombre=?, Descripcion=?";
+            String sql = "UPDATE Departamentos SET Nombre=?, Descripcion=? WHERE DepartamentoID=?";
             try (PreparedStatement statement = conn.prepareStatement(sql)) {
                 statement.setString(1, departamento.getNombre());
                 statement.setString(2, departamento.getDescripcion());
+                statement.setInt(3, departamento.getDepatamentoId());
                 int rowsAffected = statement.executeUpdate();
                 return rowsAffected;
             } catch (SQLException e) {
@@ -81,7 +82,7 @@ public class DepartamentoDAL {
                 int rowsAffected = statement.executeUpdate();
                 return rowsAffected;
             } catch (SQLException e) {
-                throw new RuntimeException("Error al crear el producto", e);
+                throw new RuntimeException("Error al elimar el producto", e);
             }
         } catch (SQLException e) {
             throw new RuntimeException("Error al obtener la conexión a la base de datos", e);
