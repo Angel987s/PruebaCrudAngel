@@ -38,6 +38,23 @@ public class DepartamentoDAL {
         }
         return departamentos;
     }
+    
+    public static int crear(Departamento empleado) {
+        try (Connection conn = ComunDB.obtenerConexion()) {
+
+            String sql = "INSERT INTO Departamentos (Nombre, Descripcion) VALUES (?, ?)";
+            try (PreparedStatement statement = conn.prepareStatement(sql)) {
+                statement.setString(1, empleado.getNombre());
+                statement.setString(2, empleado.getDescripcion());
+                int rowsAffected = statement.executeUpdate();
+                return rowsAffected;
+            } catch (SQLException e) {
+                throw new RuntimeException("Error al crear el producto", e);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al obtener la conexión a la base de datos", e);
+        }
+    }
     public static int modificar(Departamento departamento) {
         try (Connection conn = ComunDB.obtenerConexion()) {
 

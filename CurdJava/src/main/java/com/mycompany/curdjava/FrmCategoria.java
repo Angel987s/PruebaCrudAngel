@@ -3,13 +3,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.curdjava;
-
+import entidades.Departamento;
+import accesoadatos.DepartamentoDAL;
+import javax.swing.JOptionPane;
+import utilerias.OpcionesCRUD;
+import static utilerias.OpcionesCRUD.CREAR;
+import static utilerias.OpcionesCRUD.ELIMINAR;
+import static utilerias.OpcionesCRUD.MODIFICAR;
 /**
  *
  * @author MINEDUCYT
  */
 public class FrmCategoria extends javax.swing.JFrame {
 
+     private OpcionesCRUD opcionCRUD;
     /**
      * Creates new form FrmCategoria
      */
@@ -26,21 +33,103 @@ public class FrmCategoria extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtNombre = new javax.swing.JTextField();
+        txtDescripcion = new javax.swing.JTextField();
+        btnGuardar = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("Nombre : ");
+
+        jLabel2.setText("Descripcion :");
+
+        btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
+
+        btnEditar.setText("Editar");
+
+        btnEliminar.setText("Eliminar");
+
+        btnCancelar.setText("Cancelar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel1)
+                        .addGap(29, 29, 29)
+                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(btnGuardar))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnEditar)
+                            .addComponent(txtDescripcion))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnEliminar)
+                .addGap(96, 96, 96)
+                .addComponent(btnCancelar)
+                .addGap(22, 22, 22))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnGuardar)
+                    .addComponent(btnEditar)
+                    .addComponent(btnEliminar)
+                    .addComponent(btnCancelar))
+                .addGap(50, 50, 50))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        // TODO add your handling code here:
+         if (null != opcionCRUD) // TODO add your handling code here:
+            switch (opcionCRUD) {
+                case CREAR:
+                    crearReg();
+                    this.setVisible(false);
+                    break;
+                case MODIFICAR:
+                    modificarReg();
+                    this.setVisible(false);
+                    break;
+                case ELIMINAR:
+                    eliminarReg();
+                    this.setVisible(false);
+                    break;
+                default:
+                    break;
+            }
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -76,7 +165,88 @@ public class FrmCategoria extends javax.swing.JFrame {
             }
         });
     }
+    
+    private Departamento obtenerDatos() {
+        Departamento producto = new Departamento();
+        producto.setNombre(txtNombre.getText());
+        producto.setDescripcion(txtDescripcion.getText());
+        return producto;
+    }
+    private void asingarDatos(Departamento empleado) {
+        txtNombre.setText(empleado.getNombre());
+        txtDescripcion.setText(empleado.getDescripcion());
+    }
+    
+    private void crearReg() {
+        try {
+            Departamento empleado = obtenerDatos();
+            int result = DepartamentoDAL.crear(empleado);
+            if (result > 0) {
+                JOptionPane.showMessageDialog(this,
+                        "El producto fue registrado existosamente", "CREAR PRODUCTO",
+                        JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this,
+                        "Sucedio un error al crear el producto", "ERROR PRODUCTO",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this,
+                    ex.getMessage(), "ERROR PRODUCTO",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+
+    }
+    
+    private void modificarReg() {
+        try {
+            Departamento empleado = obtenerDatos();
+            int result = DepartamentoDAL.modificar(empleado);
+            if (result > 0) {
+                JOptionPane.showMessageDialog(this,
+                        "El producto fue modificado existosamente", "MODIFICAR PRODUCTO",
+                        JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this,
+                        "Sucedio un error al modificar el producto", "ERROR PRODUCTO",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this,
+                    ex.getMessage(), "ERROR PRODUCTO",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+
+    }
+     private void eliminarReg() {
+        try {
+            Departamento empleado = obtenerDatos();
+            int result = DepartamentoDAL.eliminar(empleado);
+            if (result > 0) {
+                JOptionPane.showMessageDialog(this,
+                        "El producto fue eliminado existosamente", "ELIMINAR PRODUCTO",
+                        JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this,
+                        "Sucedio un error al eliminar el producto", "ERROR PRODUCTO",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this,
+                    ex.getMessage(), "ERROR PRODUCTO",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnGuardar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JTextField txtDescripcion;
+    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }
